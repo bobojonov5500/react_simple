@@ -1,6 +1,7 @@
 import React, { useState } from "react";
+import { v4 as uuidv4 } from "uuid";
 
-function TodoForm({ InputValue, id }) {
+function TodoForm({ InputValue }) {
   const [values, setValues] = useState({
     name: "",
     surname: "",
@@ -11,15 +12,19 @@ function TodoForm({ InputValue, id }) {
     setValues({ ...values, [e.target.name]: e.target.value });
   };
   const OnHandleChange = (event) => {
-    id++;
+    const uuid = uuidv4();
     event.preventDefault();
     if (!values.name.trim() || !values.surname.trim() || !values.age.trim())
       return;
-    setValues({ ...values }, (values.id = id));
+    setValues({ ...values }, (values.id = uuid));
     InputValue(values);
-    console.log(values);
+    setValues({
+      name: "",
+      surname: "",
+      age: "",
+    });
   };
-  console.log(values);
+
   return (
     <>
       <form onSubmit={OnHandleChange} className="container d-flex mt-3 ">

@@ -1,7 +1,7 @@
 import { useState } from "react";
 import "./style/TodoItem.css";
 
-function TodoItem({ item, Delete }) {
+function TodoItem({ item, Delete, count }) {
   const [toggle, setToggle] = useState(false);
   const Toggle = (id) => {
     if (id === item.id) {
@@ -10,7 +10,7 @@ function TodoItem({ item, Delete }) {
   };
   return (
     <div className="list-wrapper">
-      <span>card {item.id}</span>
+      <span>card {count + 1}</span>
       <ul className="list">
         <li className={toggle ? "active" : ""}>{item.name}</li>
         <li className={toggle ? "active" : ""}>{item.age}</li>
